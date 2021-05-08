@@ -1,5 +1,5 @@
 {
-  "name": "Discord Webhook Alert",
+  "name": "discord-webhook-alert",
   "version": "1.0.0",
   "description": "Discord webhook for Github deployment",
   "main": "dist/index.js",
