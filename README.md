@@ -22,6 +22,8 @@ Send notifications to Discord using a webhook.
 
 ## Exemplo de uso
 
-usa: action/LeoCpii/discord-webhook-alert@v1.0.0
+```yml
+use: action/LeoCpii/discord-webhook-alert@v1.0.0
 with:
   webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+```
