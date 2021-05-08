@@ -1,4 +1,4 @@
-import { getInput, setFailed } from '@actions/core';
+import { getInput, setFailed, debug, info } from '@actions/core';
 import { context } from '@actions/github';
 import { MessageBuilder, Webhook } from 'webhook-discord';
 
@@ -12,6 +12,8 @@ class DiscordAlert {
     ) { }
 
     get message(): MessageBuilder {
+        debug(context.payload.repository.html_url)
+        debug(context.actor)
         return this.builder
             .setName(this.env.data.name)
             .setAvatar(this.env.data.avatar)
