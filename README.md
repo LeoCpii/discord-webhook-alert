@@ -22,6 +22,6 @@ Send notifications to Discord using a webhook.
 
 ## Exemplo de uso
 
-usa: ações/hello-world-javascript-action@v1.1
-com:
-  quem cumprimentar: 'Mona, a Octocat'
+usa: action/LeoCpii/discord-webhook-alert@v1.0.0
+with:
+  webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
