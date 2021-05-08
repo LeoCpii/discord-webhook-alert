@@ -12,6 +12,8 @@ class DiscordAlert {
     ) {;this.builder = builder;this.hook = hook;this.env = env; }
 
     get message() {
+        _core.debug.call(void 0, _github.context.payload.repository.html_url)
+        _core.debug.call(void 0, _github.context.actor)
         return this.builder
             .setName(this.env.data.name)
             .setAvatar(this.env.data.avatar)
@@ -55,6 +57,10 @@ class Env {
         return _core.getInput.call(void 0, 'webhookUrl').replace('/github', '');
     }
 
+     get label() {
+        return _github.context.ref.replace('refs/tags/', '').replace('refs/heads/', '');
+    }
+
      get data() {
         return {
             name: _core.getInput.call(void 0, 'name') || Env.default.name,
@@ -64,7 +70,7 @@ class Env {
             color: Env.type[this.type],
             branch: {
                 title: 'Branch',
-                label: _github.context.ref,
+                label: this.label,
                 inline: true
             },
             time: {

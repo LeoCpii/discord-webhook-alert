@@ -57,6 +57,10 @@ class Env {
         return getInput('webhookUrl').replace('/github', '');
     }
 
+    public get label(): string {
+        return context.ref.replace('refs/tags/', '').replace('refs/heads/', '');
+    }
+
     public get data() {
         return {
             name: getInput('name') || Env.default.name,
@@ -66,7 +70,7 @@ class Env {
             color: Env.type[this.type],
             branch: {
                 title: 'Branch',
-                label: context.ref,
+                label: this.label,
                 inline: true
             },
             time: {
