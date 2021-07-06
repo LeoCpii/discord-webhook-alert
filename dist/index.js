@@ -61,11 +61,15 @@ class Env {
         return _github.context.ref.replace('refs/tags/', '').replace('refs/heads/', '');
     }
 
+     get customMessage() {
+        return _core.getInput.call(void 0, 'message') || `Deployment on stage ${_github.context.payload.repository.name} ${Env.state[this.type]}.`;
+    }
+
      get data() {
         return {
             name: _core.getInput.call(void 0, 'name') || Env.default.name,
             avatar: _core.getInput.call(void 0, 'avatar') || Env.default.avatar,
-            title: `Deployment on stage ${_github.context.payload.repository.name} ${Env.state[this.type]}.`,
+            title: this.customMessage,
             description: _github.context.payload.repository.html_url,
             color: Env.type[this.type],
             branch: {

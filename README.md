@@ -20,6 +20,10 @@ Send notifications to Discord using a webhook.
 
 **Optional** Webhook avatar.
 
+### `message`
+
+**Optional** Custom message for success or error.
+
 ## Exemplo de uso
 
 ```yml

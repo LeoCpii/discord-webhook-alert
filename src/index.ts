@@ -1,4 +1,4 @@
-import { getInput, setFailed, debug, info } from '@actions/core';
+import { getInput, setFailed, debug } from '@actions/core';
 import { context } from '@actions/github';
 import { MessageBuilder, Webhook } from 'webhook-discord';
 
@@ -61,11 +61,15 @@ class Env {
         return context.ref.replace('refs/tags/', '').replace('refs/heads/', '');
     }
 
+    public get customMessage(): string {
+        return getInput('message') || `Deployment on stage ${context.payload.repository.name} ${Env.state[this.type]}.`;
+    }
+
     public get data() {
         return {
             name: getInput('name') || Env.default.name,
             avatar: getInput('avatar') || Env.default.avatar,
-            title: `Deployment on stage ${context.payload.repository.name} ${Env.state[this.type]}.`,
+            title: this.customMessage,
             description: context.payload.repository.html_url,
             color: Env.type[this.type],
             branch: {
