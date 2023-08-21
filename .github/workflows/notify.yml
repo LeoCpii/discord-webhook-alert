@@ -9,6 +9,9 @@ on:
       type:
         description: "type alert"
         required: true
+      project:
+        description: "Project name"
+        required: false
       name:
         description: "Name alert"
         required: false
@@ -17,9 +20,6 @@ on:
         required: false
       message:
         description: "Custom Message"
-        required: false
-      project:
-        description: "Project name"
         required: false
 
 jobs:

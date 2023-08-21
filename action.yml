@@ -8,17 +8,17 @@ inputs:
     description: Type - success, warn, or error
     required: true
     default: error
+  project:
+    description: Project name
+    required: false
+  message:
+    description: Custom Message for succes or error (Default message\:\ "Deployment on stage \##\repository\##\ \##\state\##\.")
+    required: false
   name:
     description: Webhook name
     required: false
   avatar:
     description: Webhook avatar
-    required: false
-  message:
-    description: Custom Message for succes or error (Default message\:\ "Deployment on stage \##\repository\##\ \##\state\##\.")
-    required: false
-  project:
-    description: Project name
     required: false
 runs:
   using: 'node16'
