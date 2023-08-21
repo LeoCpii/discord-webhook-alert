@@ -1,4 +1,4 @@
-name: CD - PRD
+name: Exec
 
 on:
   pull_request:
