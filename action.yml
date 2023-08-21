@@ -18,5 +18,5 @@ inputs:
     description: Custom Message for succes or error (Default message\:\ "Deployment on stage \##\repository\##\ \##\state\##\.")
     required: false
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'

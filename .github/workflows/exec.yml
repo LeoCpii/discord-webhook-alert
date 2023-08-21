@@ -1,0 +1,35 @@
+name: CD - PRD
+
+on:
+  pull_request:
+    branches:
+      - "release/**"
+
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    needs: [firebase-deploy]
+    environment: ${{ inputs.ENVIRONMENT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Deployment Succeded
+        uses: LeoCpii/discord-webhook-alert@master
+        with:
+          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          type: success
+
+      - name: Deployment Canceled
+        uses: LeoCpii/discord-webhook-alert@master
+        with:
+          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          type: warn
+
+      - name: Deployment Error
+        uses: LeoCpii/discord-webhook-alert@master
+        with:
+          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          type: error
