@@ -34,3 +34,8 @@ jobs:
         with:
           webhookUrl: ${{ inputs.webhook }}
           type: ${{ inputs.type }}
+          project: ${{ inputs.project }}
+          name: ${{ inputs.name }}
+          avatar: ${{ inputs.avatar }}
+          message: ${{ inputs.message }}
+          
