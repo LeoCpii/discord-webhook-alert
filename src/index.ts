@@ -67,7 +67,7 @@ class Env {
     }
 
     public get project(): string {
-        return getInput('project') || '';
+        return getInput('project') || 'BOLO';
     }
 
     public get data() {
