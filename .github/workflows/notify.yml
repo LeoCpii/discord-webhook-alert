@@ -17,17 +17,17 @@ jobs:
       - name: Deployment Succeded
         uses: LeoCpii/discord-webhook-alert@master
         with:
-          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          webhookUrl: ${{ inputs.webhook }}
           type: success
 
       - name: Deployment Canceled
         uses: LeoCpii/discord-webhook-alert@master
         with:
-          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          webhookUrl: ${{ inputs.webhook }}
           type: warn
 
       - name: Deployment Error
         uses: LeoCpii/discord-webhook-alert@master
         with:
-          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          webhookUrl: ${{ inputs.webhook }}
           type: error
