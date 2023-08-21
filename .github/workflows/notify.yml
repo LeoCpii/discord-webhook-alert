@@ -29,20 +29,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Deployment Succeded
+      - name: Alert
         uses: LeoCpii/discord-webhook-alert@master
         with:
           webhookUrl: ${{ inputs.webhook }}
-          type: success
-
-      - name: Deployment Canceled
-        uses: LeoCpii/discord-webhook-alert@master
-        with:
-          webhookUrl: ${{ inputs.webhook }}
-          type: warn
-
-      - name: Deployment Error
-        uses: LeoCpii/discord-webhook-alert@master
-        with:
-          webhookUrl: ${{ inputs.webhook }}
-          type: error
+          type: ${{ inputs.type }}
