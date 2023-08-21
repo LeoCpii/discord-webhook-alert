@@ -13,14 +13,16 @@ class DiscordAlert {
     get message(): MessageBuilder {
         debug(context.payload.repository.html_url)
         debug(context.actor)
+    
         return this.builder
             .setName(this.env.data.name)
             .setAvatar(this.env.data.avatar)
             .setTitle(this.env.data.title)
             .setDescription(this.env.data.description)
             .setColor(this.env.data.color)
-            .addField(this.env.data.branch.title, this.env.data.branch.label, this.env.data.branch.inline)
+            .addField(this.env.data.project.title, this.env.data.project.label, this.env.data.project.inline)
             .addField(this.env.data.workflow.title, this.env.data.workflow.label, this.env.data.workflow.inline)
+            .addField(this.env.data.branch.title, this.env.data.branch.label, this.env.data.branch.inline)
             .setAuthor(this.env.data.author.name, this.env.data.author.image, this.env.data.author.url)
             .setTime();
     }
@@ -64,6 +66,10 @@ class Env {
         return getInput('message') || `Deployment on stage ${context.payload.repository.name} ${Env.state[this.type]}.`;
     }
 
+    public get project(): string {
+        return getInput('project') || '';
+    }
+
     public get data() {
         return {
             name: getInput('name') || Env.default.name,
@@ -71,21 +77,26 @@ class Env {
             title: this.customMessage,
             description: context.payload.repository.html_url,
             color: Env.type[this.type],
+            author: {
+                name: context.actor,
+                image: context.payload.sender.avatar_url,
+                url: context.payload.sender.html_url,
+            },
             branch: {
                 title: 'Branch',
                 label: this.label,
-                inline: true
+                inline: false
             },
             workflow: {
                 title: 'Workflow',
                 label: context.workflow,
                 inline: true
             },
-            author: {
-                name: context.actor,
-                image: context.payload.sender.avatar_url,
-                url: context.payload.sender.html_url,
-            }
+            project: {
+                title: 'Project',
+                label: this.project,
+                inline: true
+            },
         }
     }
 }
