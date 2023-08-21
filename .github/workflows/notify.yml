@@ -6,6 +6,21 @@ on:
       webhook:
         description: "Webhook Url"
         required: true
+      type:
+        description: "type alert"
+        required: true
+      name:
+        description: "Name alert"
+        required: false
+      avatar:
+        description: "Avatar alert"
+        required: false
+      message:
+        description: "Custom Message"
+        required: false
+      project:
+        description: "Project name"
+        required: false
 
 jobs:
   notify:
@@ -17,17 +32,17 @@ jobs:
       - name: Deployment Succeded
         uses: LeoCpii/discord-webhook-alert@master
         with:
-          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          webhookUrl: ${{ inputs.webhook }}
           type: success
 
       - name: Deployment Canceled
         uses: LeoCpii/discord-webhook-alert@master
         with:
-          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          webhookUrl: ${{ inputs.webhook }}
           type: warn
 
       - name: Deployment Error
         uses: LeoCpii/discord-webhook-alert@master
         with:
-          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          webhookUrl: ${{ inputs.webhook }}
           type: error

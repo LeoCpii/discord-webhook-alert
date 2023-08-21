@@ -6,7 +6,7 @@ inputs:
     required: true
   type:
     description: Type - success, warn, or error
-    required: false
+    required: true
     default: error
   name:
     description: Webhook name
@@ -16,6 +16,9 @@ inputs:
     required: false
   message:
     description: Custom Message for succes or error (Default message\:\ "Deployment on stage \##\repository\##\ \##\state\##\.")
+    required: false
+  project:
+    description: Project name
     required: false
 runs:
   using: 'node16'
