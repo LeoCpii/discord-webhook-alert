@@ -67,7 +67,7 @@ class Env {
     }
 
      get project() {
-        return _core.getInput.call(void 0, 'project') || '';
+        return _core.getInput.call(void 0, 'project') || 'BOLO';
     }
 
      get data() {
