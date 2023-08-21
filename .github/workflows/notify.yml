@@ -1,9 +1,9 @@
 name: Exec
 
 on:
-  push:
+  pull_request:
     branches:
-      - "release/**"
+      - "master"
 
   workflow_dispatch:
 
