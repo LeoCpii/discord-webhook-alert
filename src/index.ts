@@ -1,9 +1,8 @@
-import { getInput, setFailed, debug } from '@actions/core';
 import { context } from '@actions/github';
 import { MessageBuilder, Webhook } from 'webhook-discord';
+import { getInput, setFailed, debug } from '@actions/core';
 
 type TValidType = 'warn' | 'error' | 'success';
-
 class DiscordAlert {
     constructor(
         private builder: MessageBuilder,
@@ -21,7 +20,7 @@ class DiscordAlert {
             .setDescription(this.env.data.description)
             .setColor(this.env.data.color)
             .addField(this.env.data.branch.title, this.env.data.branch.label, this.env.data.branch.inline)
-            .addField(this.env.data.time.title, this.env.data.time.label, this.env.data.time.inline)
+            .addField(this.env.data.workflow.title, this.env.data.workflow.label, this.env.data.workflow.inline)
             .setAuthor(this.env.data.author.name, this.env.data.author.image, this.env.data.author.url)
             .setTime();
     }
@@ -77,7 +76,7 @@ class Env {
                 label: this.label,
                 inline: true
             },
-            time: {
+            workflow: {
                 title: 'Workflow',
                 label: context.workflow,
                 inline: true

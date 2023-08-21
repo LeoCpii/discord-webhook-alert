@@ -1,0 +1,33 @@
+name: Notify
+
+on:
+  workflow_dispatch:
+    inputs:
+      webhook:
+        description: "Webhook Url"
+        required: true
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Deployment Succeded
+        uses: LeoCpii/discord-webhook-alert@master
+        with:
+          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          type: success
+
+      - name: Deployment Canceled
+        uses: LeoCpii/discord-webhook-alert@master
+        with:
+          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          type: warn
+
+      - name: Deployment Error
+        uses: LeoCpii/discord-webhook-alert@master
+        with:
+          webhookUrl: ${{ secrets.DEPLOY_WEBHOOK }}
+          type: error
